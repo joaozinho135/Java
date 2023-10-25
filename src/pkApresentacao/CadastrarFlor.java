@@ -1,8 +1,8 @@
 package pkApresentacao;
 
 import javax.swing.JOptionPane;
-import pkBanco.ClienteDAO;
-import pkModelo.Cliente;
+import pkBanco.FlorDAO;
+import pkModelo.Flor;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,12 +13,12 @@ import pkModelo.Cliente;
  *
  * @author Jason
  */
-public class CadastrarCliente extends javax.swing.JInternalFrame {
+public class CadastrarFlor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastrarCliente
      */
-    public CadastrarCliente() {
+    public CadastrarFlor() {
         initComponents();
     }
 
@@ -34,13 +34,9 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JTextField();
+        txtEspecie = new javax.swing.JTextField();
         lblIdade = new javax.swing.JLabel();
-        txtIdade = new javax.swing.JTextField();
-        lblTelefone = new javax.swing.JLabel();
-        txtTelefone = new javax.swing.JTextField();
-        lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -55,24 +51,14 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         txtNome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         lblCpf.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCpf.setText("Cpf:");
+        lblCpf.setText("Espécie:");
 
-        txtCpf.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtEspecie.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         lblIdade.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblIdade.setText("Idade:");
+        lblIdade.setText("Valor:");
 
-        txtIdade.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        lblTelefone.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblTelefone.setText("Telefone:");
-
-        txtTelefone.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblEmail.setText("E-mail:");
-
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtValor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnCadastrar.setText("Cadastrar");
@@ -122,24 +108,24 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblEmail)
-                            .addComponent(lblNome)
-                            .addComponent(lblCpf)
-                            .addComponent(lblTelefone)
-                            .addComponent(lblIdade))
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNome)
+                                    .addComponent(lblIdade)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome)
-                            .addComponent(txtCpf)
-                            .addComponent(txtIdade)
-                            .addComponent(txtTelefone)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)))
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(txtEspecie)
+                            .addComponent(txtValor)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(47, 47, 47)
                         .addComponent(btnCadastrar)
-                        .addGap(34, 34, 34)
+                        .addGap(80, 80, 80)
                         .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -152,25 +138,17 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                     .addComponent(txtNome))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIdade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTelefone))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtEmail))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnFechar))
-                .addGap(31, 31, 31))
+                .addGap(153, 153, 153))
         );
 
         pack();
@@ -199,40 +177,35 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     private void cadastrar() {
         if (txtNome.getText().equals(""))
 	{
-            JOptionPane.showMessageDialog(null,"Digite o nome do cliente!","Nome",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Digite o nome da flor!","Nome",JOptionPane.ERROR_MESSAGE);
             txtNome.requestFocus();
-	}else if (txtCpf.getText().equals(""))
+	}else if (txtEspecie.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(null,"Digite o CPF do cliente!","CPF",JOptionPane.ERROR_MESSAGE);
-            txtCpf.requestFocus();
-	}else if (txtIdade.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"Digite a espécie da flor!","Espécie",JOptionPane.ERROR_MESSAGE);
+            txtEspecie.requestFocus();
+	}else if (txtValor.getText().equals(""))
 	{
-            JOptionPane.showMessageDialog(null,"Digite a idade do cliente!","Idade",JOptionPane.ERROR_MESSAGE);
-            txtIdade.requestFocus();
-        }else if (txtTelefone.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"Digite o preço da flor!","Valor",JOptionPane.ERROR_MESSAGE);
+            txtValor.requestFocus();
+        }else
 	{
-            JOptionPane.showMessageDialog(null,"Digite o telefone do cliente!","Telefone",JOptionPane.ERROR_MESSAGE);
-            txtTelefone.requestFocus();
-	}else
-	{
-            Cliente cliente=new Cliente();
-            cliente.setNome(txtNome.getText());
-            cliente.setCpf(txtCpf.getText());
+            Flor flor =new Flor();
+            flor.setNome(txtNome.getText());
+            flor.setEspecie(txtEspecie.getText());
             try
             {
-                cliente.setIdade(Integer.parseInt(txtIdade.getText()));
-		cliente.setTelefone(txtTelefone.getText());
-		cliente.setEmail(txtEmail.getText());
-		ClienteDAO clienteDAO = new ClienteDAO();
-		Cliente cadastrado = clienteDAO.selecionarCliente(cliente.getCpf());
+                flor.setValor(Double.valueOf(txtValor.getText()));
+		
+		FlorDAO florDAO = new FlorDAO();
+		Flor cadastrado = florDAO.selecionarFlor(flor.getNome());
 		if (cadastrado != null)
                 {
-                    JOptionPane.showMessageDialog(null,"Já existe um cliente cadastrado com este CPF!","Cliente Já Cadastrado",JOptionPane.ERROR_MESSAGE);
-                    txtCpf.requestFocus();
-                    txtCpf.selectAll();
+                    JOptionPane.showMessageDialog(null,"Já existe uma flor cadastrada com este Nome!","Flor Já cadastrada",JOptionPane.ERROR_MESSAGE);
+                    txtEspecie.requestFocus();
+                    txtEspecie.selectAll();
 		}else
 		{
-                    int retorno=clienteDAO.cadastrarCliente(cliente);
+                    int retorno=florDAO.cadastrarFlor(flor);
                     if (retorno == 1)
                     {
                         JOptionPane.showMessageDialog(null,"Cliente cadastrado com sucesso!","Cliente Cadastrado",JOptionPane.INFORMATION_MESSAGE);
@@ -243,8 +216,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
             }catch (Exception erro)
             {
                 JOptionPane.showMessageDialog(null,"Idade informada inválida!","Idade",JOptionPane.ERROR_MESSAGE);
-		txtIdade.requestFocus();
-        	txtIdade.selectAll();
+		txtValor.requestFocus();
+        	txtValor.selectAll();
             }
 	}
     }
@@ -257,15 +230,11 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblCpf;
-    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblTelefone;
     private javax.swing.JMenu menuArquivo;
-    private javax.swing.JTextField txtCpf;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtIdade;
+    private javax.swing.JTextField txtEspecie;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

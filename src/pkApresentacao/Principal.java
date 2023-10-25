@@ -56,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         menuArquivo.setText("Arquivo");
 
         itemCadastrarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        itemCadastrarCliente.setText("Cadastrar Cliente");
+        itemCadastrarCliente.setText("Cadastrar Flor");
         itemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCadastrarClienteActionPerformed(evt);
@@ -65,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
         menuArquivo.add(itemCadastrarCliente);
 
         itemConsultarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        itemConsultarCliente.setText("Consultar Cliente");
+        itemConsultarCliente.setText("Consultar Flor");
         itemConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemConsultarClienteActionPerformed(evt);
@@ -108,8 +108,8 @@ public class Principal extends javax.swing.JFrame {
     private void itemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarClienteActionPerformed
         try
 	{
-            CadastrarCliente cadastrar= 
-                    new CadastrarCliente();
+            CadastrarFlor cadastrar= 
+                    new CadastrarFlor();
             dPane.add(cadastrar);
             cadastrar.setVisible(true);
 	}catch (Exception erro) {}
@@ -118,8 +118,8 @@ public class Principal extends javax.swing.JFrame {
     private void itemConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarClienteActionPerformed
         try
 	{
-            ConsultarCliente consultar= 
-                    new ConsultarCliente();
+            ConsultarFlor consultar= 
+                    new ConsultarFlor();
             dPane.add(consultar);
             consultar.setVisible(true);
 	}catch (Exception erro) {}

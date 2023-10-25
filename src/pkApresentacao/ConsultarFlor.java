@@ -3,8 +3,8 @@ package pkApresentacao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pkBanco.ClienteDAO;
-import pkModelo.Cliente;
+import pkBanco.FlorDAO;
+import pkModelo.Flor;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,12 +14,12 @@ import pkModelo.Cliente;
  *
  * @author Jason
  */
-public class ConsultarCliente extends javax.swing.JInternalFrame {
+public class ConsultarFlor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ConsultarCliente
      */
-    public ConsultarCliente() {
+    public ConsultarFlor() {
         initComponents();
     }
 
@@ -259,8 +259,8 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
             if (retorno == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
-                ClienteDAO clienteDAO = new ClienteDAO();
-                boolean clienteDeletado = clienteDAO.deletarCliente(modelo.getValueAt(tabela.getSelectedRow(), 1).toString());
+                FlorDAO clienteDAO = new FlorDAO();
+                boolean clienteDeletado = clienteDAO.deletarFlor(modelo.getValueAt(tabela.getSelectedRow(), 1).toString());
                 if (clienteDeletado == true) {
                     modelo.removeRow(tabela.getSelectedRow());
                     JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!", "Excluído", JOptionPane.INFORMATION_MESSAGE);
@@ -285,24 +285,24 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                 }
             }
 
-            ClienteDAO clienteDAO = new ClienteDAO();
-            List<Cliente> clientes = null;
+            FlorDAO clienteDAO = new FlorDAO();
+            List<Flor> clientes = null;
 
             if (cboConsultar.getSelectedItem().equals("Nome")) {
-                clientes = clienteDAO.consultarClientes("nome", txtConsultar.getText());
+                clientes = clienteDAO.consultarFlores("nome", txtConsultar.getText());
             } else if (cboConsultar.getSelectedItem().equals("CPF")) {
-                clientes = clienteDAO.consultarClientes("cpf", txtConsultar.getText());
+                clientes = clienteDAO.consultarFlores("cpf", txtConsultar.getText());
             } else if (cboConsultar.getSelectedItem().equals("Idade")) {
-                clientes = clienteDAO.consultarClientes("idade", txtConsultar.getText());
+                clientes = clienteDAO.consultarFlores("idade", txtConsultar.getText());
             } else if (cboConsultar.getSelectedItem().equals("Telefone")) {
-                clientes = clienteDAO.consultarClientes("telefone", txtConsultar.getText());
+                clientes = clienteDAO.consultarFlores("telefone", txtConsultar.getText());
             } else if (cboConsultar.getSelectedItem().equals("E-mail")) {
-                clientes = clienteDAO.consultarClientes("email", txtConsultar.getText());
+                clientes = clienteDAO.consultarFlores("email", txtConsultar.getText());
             }
 
             if (!clientes.isEmpty()) {
-                for (Cliente c : clientes) {
-                    modelo.addRow(new Object[]{c.getNome(), c.getCpf(), c.getIdade(), c.getTelefone(), c.getEmail()});
+                for (Flor c : clientes) {
+                    modelo.addRow(new Object[]{c.getNome(), c.getEspecie(), c.getValor()});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum registro encontrado", "Nenhum registro", JOptionPane.INFORMATION_MESSAGE);
