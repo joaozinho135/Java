@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class FlorDAO {
 
-    private String urlBanco = "jdbc:postgresql://localhost:5432/bancoFlowers";
+    private String urlBanco = "jdbc:postgresql://localhost:5432/postgres";
     private String usuarioBanco = "postgres";
-    private String senhaBanco = "ftec123";
+    private String senhaBanco = "postgres";
 
     private Connection getConnection() {
         Connection connection = null;
@@ -57,7 +57,7 @@ public class FlorDAO {
         try {
             Connection conexao = getConnection();
             if (conexao != null) {
-                PreparedStatement consultar = conexao.prepareStatement("SELECT * FROM flores WHERE nome = '" + nome + "'");
+                PreparedStatement consultar = conexao.prepareStatement("SELECT * FROM flowers WHERE nome = '" + nome + "'");
                 ResultSet rs = consultar.executeQuery();
                 while (rs.next()) {
                     nome = rs.getString("nome");
@@ -85,9 +85,9 @@ public class FlorDAO {
             if (conexao != null) {
                 PreparedStatement consultarFlores;
                 if (!campo.equals("especie")) {
-                    consultarFlores = conexao.prepareStatement("SELECT * FROM flores WHERE " + campo + " LIKE '%" + dado + "%'");
+                    consultarFlores = conexao.prepareStatement("SELECT * FROM flowers WHERE " + campo + " LIKE '%" + dado + "%'");
                 } else {
-                    consultarFlores = conexao.prepareStatement("SELECT * FROM flores WHERE especie = " + dado);
+                    consultarFlores = conexao.prepareStatement("SELECT * FROM flowers WHERE especie = " + dado);
                 }
                 ResultSet rs = consultarFlores.executeQuery();
                 while (rs.next()) {

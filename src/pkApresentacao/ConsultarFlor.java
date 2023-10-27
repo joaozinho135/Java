@@ -60,7 +60,12 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
         lblConsultar.setText("Consultar Por:");
 
         cboConsultar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cboConsultar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Cpf", "Idade", "Telefone", "E-mail" }));
+        cboConsultar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Espécie\t", "Valor" }));
+        cboConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboConsultarActionPerformed(evt);
+            }
+        });
 
         txtConsultar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -77,7 +82,7 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Cpf", "Idade", "Telefone", "E-mail"
+                "Nome", "Especie", "Valor"
             }
         ));
         jScrollPane1.setViewportView(tabela);
@@ -241,6 +246,10 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         consultar();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void cboConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboConsultarActionPerformed
+
+    }//GEN-LAST:event_cboConsultarActionPerformed
     private void limpar() {
         txtConsultar.setText("");
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
@@ -263,9 +272,9 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
                 boolean clienteDeletado = clienteDAO.deletarFlor(modelo.getValueAt(tabela.getSelectedRow(), 1).toString());
                 if (clienteDeletado == true) {
                     modelo.removeRow(tabela.getSelectedRow());
-                    JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!", "Excluído", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Flor excluída com sucesso!", "Excluído", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao tentar excluir um cliente!", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Erro ao tentar excluir uma flor!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
@@ -274,7 +283,7 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
     }
 
     private void consultar() {
-        if (txtConsultar.getText().equals("") && cboConsultar.getSelectedItem().equals("Idade")) {
+        if (txtConsultar.getText().equals("") && cboConsultar.getSelectedItem().equals("Especie")) {
             JOptionPane.showMessageDialog(null, "Preencha o dado que deseja pesquisar", "Preencha o dado", JOptionPane.ERROR_MESSAGE);
             txtConsultar.requestFocus();
         } else {
@@ -285,23 +294,18 @@ public class ConsultarFlor extends javax.swing.JInternalFrame {
                 }
             }
 
-            FlorDAO clienteDAO = new FlorDAO();
-            List<Flor> clientes = null;
+            FlorDAO florDAO = new FlorDAO();
+            List<Flor> flores = null;
 
             if (cboConsultar.getSelectedItem().equals("Nome")) {
-                clientes = clienteDAO.consultarFlores("nome", txtConsultar.getText());
-            } else if (cboConsultar.getSelectedItem().equals("CPF")) {
-                clientes = clienteDAO.consultarFlores("cpf", txtConsultar.getText());
-            } else if (cboConsultar.getSelectedItem().equals("Idade")) {
-                clientes = clienteDAO.consultarFlores("idade", txtConsultar.getText());
-            } else if (cboConsultar.getSelectedItem().equals("Telefone")) {
-                clientes = clienteDAO.consultarFlores("telefone", txtConsultar.getText());
-            } else if (cboConsultar.getSelectedItem().equals("E-mail")) {
-                clientes = clienteDAO.consultarFlores("email", txtConsultar.getText());
-            }
+                flores = florDAO.consultarFlores("nome", txtConsultar.getText());
+            } else if (cboConsultar.getSelectedItem().equals("Especie")) {
+                flores = florDAO.consultarFlores("especie", txtConsultar.getText());
+            } else if (cboConsultar.getSelectedItem().equals("Valor")) {
+               flores = florDAO.consultarFlores("valor", txtConsultar.getText()); }
 
-            if (!clientes.isEmpty()) {
-                for (Flor c : clientes) {
+            if (!flores.isEmpty()) {
+                for (Flor c : flores) {
                     modelo.addRow(new Object[]{c.getNome(), c.getEspecie(), c.getValor()});
                 }
             } else {
