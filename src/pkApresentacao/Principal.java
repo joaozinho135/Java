@@ -174,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane dPane;
+    protected static javax.swing.JDesktopPane dPane;
     private javax.swing.JMenuItem itemCadastrarCliente;
     private javax.swing.JMenuItem itemConsultarCliente;
     private javax.swing.JMenuItem itemFechar;
